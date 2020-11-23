@@ -1,10 +1,10 @@
-import React, {memo} from "react";
-import {ConnectedChart} from "./_components/chart";
+import React, { memo } from "react";
+import { ConnectedChart } from "./_components/chart";
 import './index.css';
-import {ConnectedFormLogin} from "./_components/login-form";
-import {connect} from "react-redux";
-import {isUserLoginSelector} from "./_redux/chart-module";
-import {ReduxStoreType} from "./_redux/_types";
+import { ConnectedFormLogin } from "./_components/login-form";
+import { connect } from "react-redux";
+import { isUserLoginSelector } from "./_redux/chart-module";
+import { ReduxStoreType } from "./_redux/_types";
 
 type PropsType = {
     isUserLogin: boolean;

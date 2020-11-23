@@ -1,14 +1,16 @@
 import {
   SET_CHART_LOADING_START,
   SET_CHART_LOADING_STOP,
-  SET_CHART_DATA, SET_USER_LOGIN,
+  SET_CHART_DATA_ACTION,
+  SET_USER_LOGIN_ACTION,
+  SET_USER_LOGOUT_ACTION,
 } from './actions';
 import { ActionsType, ChartStateType } from './_types';
 
 export const initialState: ChartStateType = {
   isLoading: true,
   data: [],
-  isUserLogin: false
+  isUserLogin: false,
 };
 
 const reducer = (
@@ -22,11 +24,14 @@ const reducer = (
     case SET_CHART_LOADING_STOP:
       return { ...state, isLoading: false };
 
-    case SET_CHART_DATA:
+    case SET_CHART_DATA_ACTION:
       return { ...state, data: payload };
 
-    case SET_USER_LOGIN:
+    case SET_USER_LOGIN_ACTION:
       return { ...state, isUserLogin: true };
+
+    case SET_USER_LOGOUT_ACTION:
+      return { ...state, isUserLogin: false };
 
     default:
       return state;

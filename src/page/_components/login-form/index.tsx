@@ -1,21 +1,18 @@
 import React, { Component } from "react";
-import { Field, Form} from "react-final-form";
+import { Field, Form } from "react-final-form";
 import { connect } from "react-redux";
 import { InputForm } from "../../../_components/input-form";
 import './index.css';
 import { loginSagaAction } from "../../_redux/chart-module";
 import { Action } from "../../../config-redux/_types";
+import { LoginUserParamsType } from "../../_types";
 
 type PropsType = {
     fetchLogin: Action<Record<string, string>>;
 };
-type StateType = {};
 
-export class WrappedComponent extends Component<PropsType, StateType> {
-
-    onSubmit = (values: any) => {
-        this.props.fetchLogin(values);
-    }
+export class WrappedComponent extends Component<PropsType> {
+    onSubmit = (values: LoginUserParamsType) => this.props.fetchLogin(values);
 
     render() {
         return(
@@ -30,18 +27,19 @@ export class WrappedComponent extends Component<PropsType, StateType> {
                             <div className="Form-fields">
                                 <div className="Form-field">
                                     <Field
-                                    name="user"
-                                    component={InputForm}
-                                    id="user"
-                                    label="Логин"
+                                        name="user"
+                                        component={InputForm}
+                                        id="user"
+                                        label="Логин"
                                     />
                                 </div>
                                 <div className="Form-field">
                                     <Field
-                                    name="password"
-                                    component={InputForm}
-                                    id="password"
-                                    label="Пароль"
+                                        type="password"
+                                        name="password"
+                                        component={InputForm}
+                                        id="password"
+                                        label="Пароль"
                                     />
                                 </div>
                                 <button type='submit'>Войти</button>

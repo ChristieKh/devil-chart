@@ -46,9 +46,7 @@ export class WrappedComponent extends Component<PropsType, StateType> {
 
     render(){
     return(
-        <>
-            {/*{this.props.isLoadingChart ? <p>Loading...</p> :*/}
-                <ResponsiveLineCanvas
+        <ResponsiveLineCanvas
                     {...commonProperties}
                     data={this.props.chartData}
                     xScale={{
@@ -63,7 +61,7 @@ export class WrappedComponent extends Component<PropsType, StateType> {
                     axisLeft={{
                         legend: 'time scale',
                         tickValues: 'every 2 days',
-                        legendOffset: 12,
+                        legendOffset: -22,
                     }}
                     axisBottom={{
                         legend: 'linear scale',
@@ -75,15 +73,13 @@ export class WrappedComponent extends Component<PropsType, StateType> {
                         from: 'color',
                         modifiers: [['darker', 0.3]],
                     }}
-                />
-            {/*}*/}
-            </>
+        />
     )}
 }
 
 const mapStateToProps = (state: ReduxStoreType) => ({
     chartData: getChartDataSelector(state),
-    isLoadingChart: isLoadingChartSelector(state)
+    isLoadingChart: isLoadingChartSelector(state),
 });
 
 export const ConnectedChart = connect(mapStateToProps, {

@@ -17,19 +17,23 @@ export const loginSagaAction: Action<Record<string, string>> = (payload: Record<
   payload,
 });
 
-
 export const GET_CHART_DATA_SAGA_ACTION = 'GET_CHART_DATA_SAGA_ACTION';
 export const getChartDataSagaAction: BaseAction = () => ({
   type: GET_CHART_DATA_SAGA_ACTION,
 });
 
-export const SET_CHART_DATA = 'SET_CHART_DATA';
+export const SET_CHART_DATA_ACTION = 'SET_CHART_DATA_ACTION';
 export const setChartAction: Action<Array<CharItemType>> = (payload: Array<CharItemType>) => ({
-  type: SET_CHART_DATA,
+  type: SET_CHART_DATA_ACTION,
   payload,
 });
 
-export const SET_USER_LOGIN = 'SET_USER_LOGIN ';
+export const SET_USER_LOGIN_ACTION = 'SET_USER_LOGIN_ACTION';
 export const setUserLoginAction: BaseAction = () => ({
-  type: SET_USER_LOGIN
+  type: SET_USER_LOGIN_ACTION
+});
+
+export const SET_USER_LOGOUT_ACTION = 'SET_USER_LOGOUT_ACTION';
+export const setUserLogoutAction: BaseAction = () => ({
+  type: SET_USER_LOGOUT_ACTION
 });

@@ -1,20 +1,27 @@
-import { call, delay, put, race } from 'redux-saga/effects';
-import { fetchLoginRequest } from '../../../../../api/fetch-login-request';
-import {fetchChartRequestData} from "../../../../../api/fetch-chart-request";
-import { getChartDataFormatter } from '../../../../../utils/getChartDataFormatter';
-import {setChartAction, setChartLoadingStartAction, setChartLoadingStopAction} from '../../actions';
+import { call, put } from 'redux-saga/effects';
+import { fetchChartRequestData } from "../../../../../api/fetch-chart-request";
+import { getChartDataFormatter } from '../../../../../utils/get-chart-data-formatter';
+import {
+  setChartAction,
+  setChartLoadingStartAction,
+  setChartLoadingStopAction,
+  setUserLogoutAction,
+} from '../../actions';
 
 export function* fetchChartDataWorkerSaga() {
   try {
     yield put(setChartLoadingStartAction());
 
-    // const params = {user: 'test', password: '1234'};
-    // const login = yield call(fetchLoginRequest, params);
+    const {graphsArray, statusCode} = yield call(fetchChartRequestData);
 
-    const {graphsArray} = yield call(fetchChartRequestData);
+    if(statusCode === 500) {
+      yield put(setUserLogoutAction());
+    }
 
-    const chartDataFormatted = getChartDataFormatter(graphsArray);
-    yield put(setChartAction(chartDataFormatted));
+    if(Boolean(graphsArray.length)){
+      const result = getChartDataFormatter(graphsArray);
+      yield put(setChartAction(result));
+    }
   } catch (error) {
     console.error('error in fetchChartDataWorkerSaga', error.message);
   } finally {

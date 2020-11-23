@@ -11,7 +11,7 @@ export type CharItemType = {
 
 type CoordinatesType = {
   x: string;
-  y: string;
+  y: number;
 }
 
 export type ActionsType = {
