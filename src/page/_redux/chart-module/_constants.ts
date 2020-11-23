@@ -1,0 +1,1 @@
+export const CHART_REDUCER_NAME = 'CHART_REDUCER_NAME';
